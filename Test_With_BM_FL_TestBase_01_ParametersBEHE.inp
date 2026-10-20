@@ -108,7 +108,7 @@ dfy_berm_3_1_A = 0		# Friction coefficient slope in the berms [-] HE -PIPE
 **
 ** Curve #4
 **
-activation_step_4_A = 29		# Activation step [-]
+activation_step_4_A = 53		# Activation step [-]
 x_break_4_A = 0.0042		# Slip at break, axial direction [m] BE -PIPE
 y_break_4_A = 0.0481		# Slip at break, lateral direction [m] BE -PIPE
 x_res_4_A = 0.0253		# Slip at residual, axial direction [m] BE -PIPE
@@ -191,7 +191,7 @@ dfy_berm_3_1_B            = 0.4305                       # Friction coefficient 
 **
 ** ---------- Curve #4 ----------
 **
-activation_step_4_B       = 29                        # Activation step [-]
+activation_step_4_B       = 53                        # Activation step [-]
 x_break_4_B               = 0.0050                  # Slip at break, axial direction [m] BE- DBM Shoulder
 y_break_4_B               = 0.0373                  # Slip at break, lateral direction [m] BE- DBM Shoulder
 x_res_4_B                 = 0.0300                 # Slip at residual, axial direction [m] BE- DBM Shoulder
@@ -273,7 +273,7 @@ dfy_berm_3_1_C            = 0.4305                       # Friction coefficient 
 **
 ** ---------- Curve #4 ----------
 **
-activation_step_4_C       = 29                        # Activation step [-]
+activation_step_4_C       = 53                        # Activation step [-]
 x_break_4_C               = 0.0050                 # Slip at break, axial direction [m] BE-DBM Middle
 y_break_4_C               = 0.0214                   # Slip at break, lateral direction [m] BE-DBM Middle
 x_res_4_C                 = 0.0300                  # Slip at residual, axial direction [m] BE-DBM Middle

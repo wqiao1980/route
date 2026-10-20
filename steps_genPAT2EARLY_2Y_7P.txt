@@ -1,0 +1,2562 @@
+**=================================================================================
+** STEP 053: FCD5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 054: FCD_HU_Early5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 055: PCD Early5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 056: PCD_HU_Early5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 057: HCD Early5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0058: HCD-HU-Early5_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY5_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 059: PCD Early5_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY5_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 060: PCD-HU-Early5_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY5_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 061: FCD6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 062: FCD_HU_Early6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 063: PCD Early6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 064: PCD_HU_Early6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 065: HCD Early6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0066: HCD-HU-Early6_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY6_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 067: PCD Early6_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY6_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 068: PCD-HU-Early6_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY6_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 069: FCD7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 070: FCD_HU_Early7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 071: PCD Early7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 072: PCD_HU_Early7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 073: HCD Early7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0074: HCD-HU-Early7_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY7_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 075: PCD Early7_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY7_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 076: PCD-HU-Early7_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY7_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 077: FCD8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 078: FCD_HU_Early8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 079: PCD Early8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 080: PCD_HU_Early8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 081: HCD Early8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0082: HCD-HU-Early8_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY8_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 083: PCD Early8_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY8_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 084: PCD-HU-Early8_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY8_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 085: FCD9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 086: FCD_HU_Early9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 087: PCD Early9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 088: PCD_HU_Early9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 089: HCD Early9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0090: HCD-HU-Early9_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY9_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 091: PCD Early9_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY9_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 092: PCD-HU-Early9_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY9_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 093: FCD10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 094: FCD_HU_Early10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 095: PCD Early10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 096: PCD_HU_Early10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 097: HCD Early10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0098: HCD-HU-Early10_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY10_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 099: PCD Early10_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY10_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0100: PCD-HU-Early10_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY10_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0101: FCD11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+FCD_Early11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-10, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_INT_FCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT = "PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT = "WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT = "TEMP_STEEL_FCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0102: FCD_HU_Early11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from FCD11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_FCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_FCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0103: PCD Early11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD EARLY11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0104: PCD_HU_Early11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0105: HCD Early11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+HCD - EARLY11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 00106: HCD-HU-Early11_1drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from HCD - EARLY11_1
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_HCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_HCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0107: PCD Early11_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+PCD - EARLY11_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_CD_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_CD_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
+**=================================================================================
+** STEP 0108: PCD-HU-Early11_2drained
+**=================================================================================
+**
+*STEP , NLGEOM = YES, UNSYMM = YES , INC = 10000
+Restart from PCD - EARLY11_2
+**
+*STATIC, STABILIZE = 1.0e-8
+0.05, 1.0, 1.0e-15, 0.1
+**
+**---------------------
+** Model changes
+**---------------------
+**
+**
+**---------------------
+** Boundary conditions
+**---------------------
+**
+**
+**
+**---------------------
+** Loadings
+**---------------------
+**
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_INT_PCD_HU_Early.prof"
+*DLOAD, OP = NEW
+*INCLUDE, INPUT ="PRESS_STEEL_EXT_External-Pressure.prof"
+*INCLUDE, INPUT ="WEIGHT_Content_early.prof"
+*DLOAD, OP = NEW
+SEC1_STEEL_ELEMENTS, PZ, -<s1_equiv_steel_weight>
+***SEC2_STEEL_ELEMENTS, PZ, -<s2_equiv_steel_weight>
+***added by WEI
+Buoy_Sec_Ele, PZ, <UPLIFT_BUOY>
+**
+**
+**
+**
+*TEMPERATURE, OP = NEW
+*INCLUDE, INPUT ="TEMP_STEEL_PCD_HU_Early.prof"
+**
+*INCLUDE, INPUT = BPTiber_With_BM_FL6_TestBase_10_Outputs_NBINT_2.inp
+**
+*END STEP
+**
