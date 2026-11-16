@@ -1,0 +1,1296 @@
+Payara Flexible Riser to Flowline Connection
+*preprint, history=no,echo=yes,model=yes
+**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+** CVerification Case with
+**          - L= 454m (TDP to Flange),  TDP Tension 112.9 kN
+**          - BE for friction factor (BE-BE friction) 
+**          - with bend restrictor Submerged weight (640.55 kg/m; 6283.80 N/m)
+**          - flexible data -  weight/m based on OP, 151.71 kg/m, 1488.34 N/m
+**          - bending stiffness: 558.02 KN-m^2
+**         
+**
+**&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+**   TRF(Transition at Flange) is located at origin: (x=0, y=0) 
+**
+**   BE embedment: 0.143*OD mm during operation                             
+**
+**   Flexible Riser Pipe: ID=0.2413m /OD=0.5553m)
+**      -- Length: TDP to TRF-EF
+**	    -- Riser Submerged Weight(N/m): 
+**            1403.2(empty)/OP: 1488.3(mean) 1904.6 (flooded/Hydrotest) 
+**      -- Equivalent axial stiffness: 6.861E+8N
+**         Bending Stiffness 558020 Nm^2 
+**         Torsional Stiffness 1622154.05 Nm^2/rad
+**       -- Lateral buckling critical bending radius 5.7346m
+**
+**      Connection Fitting (Rigid): OD=0.671m
+**     -- Length: L = 1.951m +0.53m Bending Restrictor overlap
+**      -- Sub Weight (N/m): 14723.50 N/m (empty Considering BR overlap)
+**  
+**
+**   Bending Restrictor: R_min= 5.7346 m
+**      -- Length: L= 4.870 m   
+**      -- Submerged weight: 6283.80 N/m
+**
+**   Temperature:   
+**   	Max./Min. Oper: F(C) / F(C)
+**
+**   Pressure @seabed:   
+**      Max./ Min. Oper:  12.6MPa/12.6MPa)
+**
+**   WD: averg. 1812 m // Seawater temp.: 3.5 deg.C 
+**   Residual Lay Tension: 0 kN (min.)
+**
+**   Displacement at FL end:  5 x (+1.5m /-0.5m)cycles
+**      --Time step:       |3 | 4   | 5  | 6 | 7   | 8    | 9    | 10   | 
+**      --Displacement(m): |0 |0.025|0.5 |0.5| 0.4 |0.875 |0.875 |0.75  |
+**
+**      --Time step:       |11   | 12   | 13    |   14 |   15   | 16  | 17   | 18   | 19 |
+**      --Displacement(m): |1.25 | 1.25 | l.125 |   0.5|  1.625 | 1.5 |  2.0 |  2.0 | 1.9|
+**
+**   Seabed average slope: 1 deg (PR4 sebed data)
+**
+**
+**   ZMP to TRF point: m and m
+**--------------------------------------------------------
+**
+****************************************************************     
+**  SET UP  GEOMETRY                      *     
+**  DIMENSIONS IN m, kg, Deg C  *     
+*******************************************     
+**
+****************************************************************  
+**      
+*PARAMETER    
+#     
+************************************************************************************************#
+*** STABILIZER
+************************************************************************************************#  
+STABILIZER=2e-6
+**
+************************************************************************************************#
+*** Dimensions and Key Point Coordinates
+************************************************************************************************#
+*** Section Length:
+LEN_TOTAL = 383.0   #Total Length 0n Seabed (Include EF)
+LEN_FIT =  1.951                     	  # Connect. Fitting 
+LEN_BR  =  4.87                   	  # Bend. Restrictor
+**
+LEN_FL = LEN_TOTAL - LEN_BR - LEN_FIT
+**
+***AVG. WATER DEPTH FOR PE CALCULATION
+WATER_DEPTH = 1702.14
+***
+SLOPE_ANGLE = (1.61)*3.1416/180           	 # Seabed Slope Angle
+Z_WD_START = -1708.53                     	 # WD at FL START (Tie-in)
+Z_WD_END = Z_WD_START +LEN_TOTAL*sin(SLOPE_ANGLE)  # WD at FL END 
+#
+Z_WD_MEAN = -WATER_DEPTH
+#
+ELEV_MAT = 0.0       
+#****  PL highest point     
+#MAX_H = Z_WD_START 
+MAX_H = Z_WD_END
+***
+DROP =  Z_WD_START - Z_WD_END - 2.0       			
+***
+***************************************************************************************#   
+***    Coordinates of Key Points 
+***  TRF (middle point of fitting) is at: X0=0, Y0=0
+***=========================================================
+***
+START_ND_X = 0.0
+END_ND_X   = LEN_TOTAL + START_ND_X
+***
+START_FIT_X = START_ND_X
+START_BR_X  =  LEN_FIT
+END_BR_X    =  LEN_BR + LEN_FIT
+***
+***#********************
+***# AUX 
+L1 = -100.+ START_ND_X
+L2 = END_ND_X + 100.
+***
+*********************************************************************************************
+***   NODE NUMBER FOR KEY POINTS 
+***    (Element Size: 0.25m)
+*********************************************************************************************
+***
+MESH_SIZE = 0.50
+***MESH_SIZE = 0.25
+***
+START_ND_NO=1                                    # FL START
+SECOND_ND_NO=START_ND_NO+1      
+***
+START_ELE_NO = 1   
+***
+ELE_FIT = int(LEN_FIT/MESH_SIZE)
+ELE_BR = int(LEN_BR/MESH_SIZE)
+ELE_FL = int(LEN_FL/MESH_SIZE)
+ELE_RISER = ELE_BR + ELE_FL
+***
+TOTAL_ELE = ELE_FL + ELE_FIT + ELE_BR
+***
+END_ND_NO  = START_ND_NO + TOTAL_ELE                  # Riser TDP
+END_ELE_NO = START_ELE_NO + TOTAL_ELE - 1                 
+***
+*** Other Key Nodes
+***
+START_ND_FIT = START_ND_NO
+SECOND_ND_FIT = START_ND_FIT +1
+START_ND_BR  = START_ND_FIT + ELE_FIT
+SECOND_ND_BR  = START_ND_BR + 1
+END_ND_BR = START_ND_BR + ELE_BR
+***
+END_ELE_FIT = START_ND_BR -1
+END_ELE_BR  = END_ND_BR -1
+END_ELE_FL = END_ELE_NO
+***
+START_BR_X_OUT = START_BR_X  
+END_BR_X_OUT    =  END_BR_X
+START_ND_BR_OUT = START_ND_BR + 1000000  
+SECOND_ND_BR_OUT    =  SECOND_ND_BR + 1000000
+END_ND_BR_OUT    =  END_ND_BR + 1000000
+END_ELE_BR_OUT    =  END_ND_BR_OUT - 1
+**
+***----------------------------------------
+**Fitting 406mm OD, ID match flexible OD
+**************************************
+***    
+OD_STEEL_FIT =  0.671
+ID_STEEL_FIT = 0.2413
+PIPE_THICK_FIT = ( OD_STEEL_FIT - ID_STEEL_FIT)/2
+OUTER_RADIUS_FIT = OD_STEEL_FIT/2   
+***
+***----------------------------------------------
+*** Weight of Flowline
+***
+WEIGHT_EMPTY_FIT= -14723.50
+WEIGHT_OP_FIT= -14808.61
+***
+CPRESS_OP_FIT=-1.0*WEIGHT_OP_FIT
+***
+***============================================================= 
+*** Bending Restrictor
+***=============================================================
+***
+AREA_RS = 0.093849 			                                 # Area
+MOMENT_INERTIA_RS = 0.0048 	                        # Moment of Inertia (I11=I22)
+TORSION_RS= 2*MOMENT_INERTIA_RS	    # Torsional Constant J
+***
+LOCK_RAD_RS = 5.7346 		                                   # Locking Radius for Bending Restrictor
+LOCK_CURATURE = 1/LOCK_RAD_RS	                           # Locking Curvature
+***
+WEIGHT_BEND_RS= -6283.80                                    # Submerged Weight 640.55 kg/m)
+***
+CPRESS_BEND_RS=-1.0*WEIGHT_BEND_RS
+***
+***============================================================= 
+*** Flexible Riser
+***=============================================================
+***
+OD_RISER  =  0.5553
+ID_RISER  = 0.2413
+***
+EI_RISER  = 5.5802E5                   
+EA_RISER  = 6.8610E8                  # Axial Stiff. EA 
+GJ_RISER   = 1.6222E7                 # Torsional Stiff. GJ
+***
+A_RISER   = (OD_RISER*OD_RISER - ID_RISER*ID_RISER)*3.1416/4 
+***
+E_RISER   = EA_RISER /A_RISER	      # Equivalent Young's Modulus
+***
+I11_RISER = EI_RISER /E_RISER         # I11
+I22_RISER = I11_RISER		      # I22
+***
+J_RISER   = 2*I11_RISER      	      # Torsional Constant J=2I
+G_RISER   = GJ_RISER/J_RISER         # Torsional Shear Modulus G
+***
+ALPHA_RISER     = 1.17E-5	      # Thermal Exp. Coeff. (for Press.)
+REF_TEMP_RISER = 4.0		      # REF. Temp.
+***----------------------------------------------------------
+WEIGHT_EMPTY_RISER = -1403.23          # 143.041kg/m
+WEIGHT_OP_RISER   = -1488.34         # Flexible Pipe Weight w. Min Content Density 
+***
+W_EMPTY_RISER = WEIGHT_EMPTY_RISER + WEIGHT_BEND_RS  #Combined empty weight (Riser + BS)
+W_OP_RISER = WEIGHT_OP_RISER + WEIGHT_BEND_RS  #Combined OP weight (Riser + BS)
+***
+CPRESS_OP_RISER    = -1.0*WEIGHT_OP_RISER
+RADIUS_TOTAL_RISER =  OD_RISER /2
+EMBED_OPER_RISER   =  OD_RISER*14.3/100
+*** BE Embedment (~14.3%OD: 79.4 mm)
+***
+***============================================================
+*** Soil-Riser tion Factor
+***
+AXFRIC_DRAINED_BE  = 0.51		# Axial undrained FF  (BE)
+LATFRIC_RES_BE    = 0.71		# Lateral residual FF (BE)
+***
+***
+************************************************************************************************#
+*** Pressure and Temperature 
+************************************************************************************************#
+*** Pressure
+***
+***PE: Average WD for Calculation
+SEA_DENS=1025.0
+PE=WATER_DEPTH*SEA_DENS*9.81
+***
+***==============================================================
+*** Temperature
+***
+TEMP_AMBIENT= 4.0
+***TEMP_OP_MAX = 97.4
+***
+TEMP_CD_FULL=TEMP_AMBIENT
+***
+***%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*** Equivalent Temperature for Flexible Riser
+*** (Temp. increase to account for pressure elongation)
+***-------------------------------------------------------------
+*** Relative pressure elongation (dL/L)
+DLL_MAX_OP = 0.00092	                            # Max. OP
+***DLL_HYDRO = 0.00157	# Hydrotest
+***
+***PI_TEMP_HYDRO = TEMP_AMBIENT + DLL_HYDRO/ALPHA_RISER
+PI_TEMP_OPMAX = TEMP_AMBIENT + DLL_MAX_OP/ALPHA_RISER    # Max. OP
+*** (Temperature elongation is minor)
+***
+***
+************************************************************************************************#
+# Flowline End loads and Displacement
+************************************************************************************************#
+*** Nominal Bottom Tension in As-laid
+T_LAY = 0.0001*1000			      # BE lay tension
+TX_LAY_END = T_LAY
+***
+***==============================================================
+*** Riser bottom Tension during Operation
+*** 
+***
+TX_TDP_OP = 151.3*1000	                       # Updated
+***==============================================================
+*** Flowline End Displacement
+***
+SETA_X    = 1.0 *(3.1416/180)	       # Heading angle tolerance btw. Riser and FL
+***
+V_EXP4  =  0.25		               # Flowline end instant expansion
+**
+V_EXP6  =  0.50		               # Flowline end instant expansion
+V_RETR7 = 0.40                       # Flowline end instant retraction
+**
+V_EXP9  =  0.50		               # Flowline end instant expansion
+V_RETR10 = 0.40                       # Flowline end instant retraction
+**
+V_EXP12  =  1.25		               # Flowline end instant expansion
+V_RETR13 = 1.13                       # Flowline end instant retraction
+**
+V_EXP15  =  1.625		               # Flowline end instant expansion
+V_RETR16 = 1.50                      # Flowline end instant retraction
+**
+**
+V_EXP18  =  2.00		               # Flowline end instant expansion
+V_RETR19 = 1.90                       # Flowline end instant retraction
+***
+
+***
+VX_EXP4 = V_EXP4 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP4 = V_EXP4 *sin(SETA_X)            # Y-componebt of expansion
+**
+VX_EXP6 = V_EXP6 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP6 = V_EXP6 *sin(SETA_X)            # Y-componebt of expansion
+VX_RETR7 = V_RETR7 *cos(SETA_X)          # X-componebt of retraction
+VY_RETR7 = V_RETR7 *sin(SETA_X)          # Y-componebt of retraction
+***
+VX_EXP9 = V_EXP9 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP9 = V_EXP9 *sin(SETA_X)            # Y-componebt of expansion
+VX_RETR10 = V_RETR10 *cos(SETA_X)          # X-componebt of retraction
+VY_RETR10 = V_RETR10 *sin(SETA_X)          # Y-componebt of retraction
+***
+VX_EXP12 = V_EXP12 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP12 = V_EXP12 *sin(SETA_X)            # Y-componebt of expansion
+VX_RETR13 = V_RETR13 *cos(SETA_X)          # X-componebt of retraction
+VY_RETR13 = V_RETR13 *sin(SETA_X)          # Y-componebt of retraction
+***
+VX_EXP15 = V_EXP15 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP15 = V_EXP15 *sin(SETA_X)            # Y-componebt of expansion
+VX_RETR16 = V_RETR16 *cos(SETA_X)          # X-componebt of retraction
+VY_RETR16 = V_RETR16 *sin(SETA_X)          # Y-componebt of retraction
+***
+VX_EXP18 = V_EXP18 *cos(SETA_X)            # X-componebt of expansion
+VY_EXP18 = V_EXP18 *sin(SETA_X)            # Y-componebt of expansion
+VX_RETR19 = V_RETR19 *cos(SETA_X)          # X-componebt of retraction
+VY_RETR19 = V_RETR19 *sin(SETA_X)          # Y-componebt of retraction
+***
+**  Add vertical displacement
+VZ_EXP4 =  V_EXP4 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+**
+VZ_EXP6 =  V_EXP6 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+VZ_RETR7 = V_RETR7 *sin(SLOPE_ANGLE)          # Z-componebt of retraction
+***
+VZ_EXP9 =  V_EXP9 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+VZ_RETR10 = V_RETR10 *sin(SLOPE_ANGLE)          # Z-componebt of retraction
+***
+VZ_EXP12 =  V_EXP12 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+VZ_RETR13 = V_RETR13 *sin(SLOPE_ANGLE)          # Z-componebt of retraction
+**
+VZ_EXP15 =  V_EXP15 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+VZ_RETR16 = V_RETR16 *sin(SLOPE_ANGLE)          # Z-componebt of retraction
+**
+VZ_EXP18 =  V_EXP18 *sin(SLOPE_ANGLE)           # Z-componebt of expansion
+VZ_RETR19 = V_RETR19 *sin(SLOPE_ANGLE)          # Z-componebt of retraction
+*********************************************************************
+***
+EL1_ITT = 2000000                      #First Number at Left Side of ITT Element (First Element)
+N_ITT_Spacing = 1                      #Node Nymber spacing between adjacent ITT Elements
+N1_ITT = START_ND_BR + N_ITT_Spacing   #First Node of first ITT (ITT attached with Inner PIPe) 
+ELE_ITT_NO = ELE_BR/N_ITT_Spacing      #Number of ITT Elements along PIPE
+Gap=0.01135                                   #Gap betwenn Bend Restrictor and Flexible (m)
+Fric_PIP = 0.3
+************************************************************************************************************************************************
+# End of parameter definition
+***
+************************************************************************************************************************************************
+********************************************************
+**** NODES USED AS REFERENCE nodes FOR CONTACT SURFACEs 
+*Node,Nset=REFND
+100000000, 0.0, 0.0, <Z_WD_MEAN>
+*Node,Nset=REFND2
+200000000, 0.0, 0.0, <Z_WD_MEAN>
+**  
+********************************************************
+**
+*Node
+*** PIPE
+<START_ND_FIT>,<START_FIT_X>, 0.0,   <MAX_H> 
+<START_ND_BR>, <START_BR_X>,  0.0,   <MAX_H> 
+<END_ND_BR>,   <END_BR_X>,    0.0,   <MAX_H>
+<END_ND_NO>,   <END_ND_X>,    0.0,   <MAX_H>
+<START_ND_BR_OUT>, <START_BR_X>,  0.0,   <MAX_H> 
+<END_ND_BR_OUT>,   <END_BR_X>,    0.0,   <MAX_H> 
+**
+*Ngen,Nset=PIPE 
+<START_ND_FIT>, <START_ND_BR>,  1
+<START_ND_BR>,  <END_ND_BR>,    1
+<END_ND_BR>,    <END_ND_NO>,    1
+**
+*Ngen,Nset=BR_OUT 
+<START_ND_BR_OUT>,  <END_ND_BR_OUT>,    1
+**
+*NSET,Nset=RISER, GENERATE
+<START_ND_BR>, <END_ND_NO>,    1
+**
+**
+**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+** Define Elements and Section Properties
+********************************************************    
+*******  FLOWLINE Element and Section
+***====================================================
+***      (NO FLOWLINE PIPE)
+***
+********************************************************    
+*******  Fitting Element and Section
+***====================================================
+*Element,Elset=FITTING,Type=PIPE31h
+<START_ND_FIT>, <START_ND_FIT>, <SECOND_ND_FIT>     
+*Elgen,Elset=FITTING       
+<START_ND_FIT>, <ELE_FIT>, 1,  1
+**
+*BEAM SECTION,SECTION=THICK PIPE,ELSET=FITTING,MATERIAL=STEEL     
+<OUTER_RADIUS_FIT>,<PIPE_THICK_FIT>     
+        
+3, 8 
+**
+***--------------------------------------------
+** MATERIAL PROPERTIES
+**
+*MATERIAL,NAME=STEEL   
+**** 
+*ELASTIC
+2.07E11, 0.30      
+***
+********************************************************    
+*******  Flexible Riser Element and Section
+***====================================================
+*Element,Elset=RISER,TYPE=B31
+<START_ND_BR>, <START_ND_BR>, <SECOND_ND_BR>     
+*Elgen,Elset=RISER       
+<START_ND_BR>, <ELE_RISER>, 1,  1
+**
+*Beam General Section, Elset=RISER, Section=General
+<A_RISER>, <I11_RISER>, 1.0E-10, <I22_RISER>, <J_RISER>
+
+<E_RISER>, <G_RISER>, <ALPHA_RISER>
+***<E_RISER>, <G_RISER>, <ALPHA_RISER>, <REF_TEMP_RISER>
+** constant properties
+**
+********************************************************    
+*******  Bend Restrictor Section
+***====================================================
+*Element,Elset=RISER_BS,Type=B31
+<START_ND_BR_OUT>, <START_ND_BR_OUT>, <SECOND_ND_BR_OUT>
+**
+*Elgen,Elset=RISER_BS       
+<START_ND_BR_OUT>, <ELE_BR>, 1,  1
+**
+****-------------------------------------------------------
+*BEAM GENERAL SECTION, ELSET=RISER_BS, SECT=NONLINEAR GENERAL     
+ <AREA_RS>,<MOMENT_INERTIA_RS>, 1.0E-10, <MOMENT_INERTIA_RS>, <TORSION_RS>       
+ 0,0,-1
+*AXIAL, LINEAR
+ 1.0E9
+**<EA: N> 
+*M1, ELASTIC
+  -331749,	-0.18489
+  -139153,	-0.05017
+  -79621,	-0.00958
+  -57622,	-0.00576
+  0.0,    0.0
+  57622	,	0.00576
+  79621	,	0.00958
+  139153,	0.05017
+  331749,	0.18489
+**<Bending Moment: N-m>, <Curvature: 1/m> //Rmin=8.055m
+*M2, ELASTIC
+  -331749,	-0.18489
+  -139153,	-0.05017
+  -79621,	-0.00958
+  -57622,	-0.00576
+  0.0,    0.0
+  57622	,	0.00576
+  79621	,	0.00958
+  139153,	0.05017
+  331749,	0.18489
+**<Bending Moment: N-m>, <Curvature: 1/m>//Rmin=8m 
+*TORQUE, LINEAR
+ ***1.0E-7
+ <GJ_RISER>
+**
+*Element, TYPE = ITT31
+<EL1_ITT>, <N1_ITT>
+*ELGEN, ELSET=ITT
+<EL1_ITT>, <ELE_ITT_NO>, <N_ITT_Spacing>, 1
+***
+*SLIDE LINE, ELSET = ITT, TYPE = LINEAR, GENERATE, SMOOTH = 0.5
+<START_ND_BR_OUT>, <END_ND_BR_OUT>,1
+*INTERFACE, ELSET=ITT
+<Gap>
+*FRICTION
+<Fric_PIP>
+****
+*EQUATION
+2
+<START_ND_BR_OUT>, 1, 1.0, <START_ND_BR>,1, -1.0
+***
+*EQUATION
+2
+<START_ND_BR_OUT>, 2, 1.0, <START_ND_BR>,2, -1.0
+***
+*EQUATION
+2
+<START_ND_BR_OUT>, 3, 1.0, <START_ND_BR>,3, -1.0
+***
+*EQUATION
+2
+<START_ND_BR_OUT>, 4, 1.0, <START_ND_BR>,4, -1.0
+***
+*EQUATION
+2
+<START_ND_BR_OUT>, 5, 1.0, <START_ND_BR>,5, -1.0
+***
+*EQUATION
+2
+<START_ND_BR_OUT>, 6, 1.0, <START_ND_BR>,6, -1.0
+***
+***%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+** ELEMENT BASED SURFACE
+*************************************************************************
+**
+***ELSET, ELSET=RISER_BS, GENERATE
+**<START_ND_BR_OUT>, <END_ELE_BR_OUT>, 1
+** Riser with BR
+*ELSET, ELSET=RISER_NOBS, GENERATE
+<END_ND_BR>, <END_ELE_NO>, 1
+** Riser without BR
+**
+*Surface,Type=Element,Name=RS_SURF
+RISER_BS
+**BEND_RS
+***
+*Surface,Type=Element,Name=RISER_SURF
+RISER_NOBS
+**RISER
+***
+*Surface,Type=Element,Name=FITTING_SURF
+FITTING
+***
+***************************************************************************
+************* GENERATE RIGID SEABED SURFACE   *************     
+***********************************************************     
+**
+*Rigid body, Analytical Surface=SEABED, REF NODE=REFND 
+*Surface,TYPE=CYLINDER,NAME=SEABED 
+ 0., 0., 0., 1., 0., 0.0
+ 0., 1.0, 0.0
+ START, <L1>, <MAX_H>   
+ LINE,  <L2>, <MAX_H> 
+*** Horizontal flat (rotate to 1 deg.) 
+***
+*Rigid body, Analytical Surface=SEABED2, REF NODE=REFND2 
+*Surface,TYPE=CYLINDER,NAME=SEABED2 
+ 0., 0., 0., 1., 0., 0.0
+ 0., 1.0, 0.0
+ START, <L1>, <MAX_H>   
+ LINE,  <L2>, <MAX_H> 
+*** with actual friction setuo  
+***
+***********************************************************************************
+***  DEFINE RISER CONTACT
+***********************************************************************************
+**   
+*CONTACT PAIR, INTERACTION=RISER_SEABED,HCRIT=100.0  
+RISER_SURF,  SEABED
+RS_SURF,  SEABED
+FITTING_SURF, SEABED 
+** Combined contact
+**
+*********************   
+**      
+*SURFACE INTERACTION, NAME=RISER_SEABED
+*Friction, Anisotropic, ELASTIC SLIP = 0.005
+0.0, <LATFRIC_RES_BE>  
+**
+********   SURFACE BEHAVIOR
+*SURFACE BEHAVIOR,PRESSURE-OVERCLOSURE=TABULAR 
+**
+0.0, 0.0
+<CPRESS_OP_FIT>, <EMBED_OPER_RISER>
+***1.0E5, <RADIUS_TOTAL_RISER>
+1.0E6, <RADIUS_TOTAL_RISER>
+**
+*****************************************************
+*CONTACT PAIR, INTERACTION=RISER_SEABED2,HCRIT=100.0  
+RISER_SURF,  SEABED2
+RS_SURF,  SEABED2
+FITTING_SURF, SEABED2 
+** Combined contact
+**
+*SURFACE INTERACTION, NAME=RISER_SEABED2
+*Friction, Anisotropic, ELASTIC SLIP = 0.005
+<AXFRIC_DRAINED_BE>, <LATFRIC_RES_BE>  
+**
+********   SURFACE BEHAVIOR
+*SURFACE BEHAVIOR,PRESSURE-OVERCLOSURE=TABULAR 
+**
+0.0, 0.0
+<CPRESS_OP_FIT>, <EMBED_OPER_RISER>
+***1.0E5, <RADIUS_TOTAL_RISER>
+1.0E6, <RADIUS_TOTAL_RISER>
+**
+**
+*****************************************************
+**DEFINE NODE SETS
+*****************************************************
+*NSET, NSET=ND_START
+<START_ND_NO>
+*NSET, NSET=ND_END
+<END_ND_NO>
+**
+**
+***********************************************************  
+***************     FOR STEPS AND OUTPUT   *************
+*Nset,Nset=NODE_ALL     
+PIPE
+**       
+*Nset,Nset=N_ENDS    
+<START_ND_NO>,<END_ND_NO> 
+**
+********************************************     
+** Initial Conditions for temperatures  
+********************************************    
+**temperature updated to initial in as-laid condition
+*INITIAL CONDITIONS, TYPE=TEMPERATURE   
+PIPE, <TEMP_AMBIENT>
+********************************************    
+*RESTART,WRITE,FREQ=2000,OVERLAY
+**writes a restart file 
+***
+*****************************************************
+**  Step 1, initial setup on flat seabed  
+*****************************************************   
+*Step, name=Initial, Nlgeom=YES, Inc=10000, Unsymm=YES
+Initial setup on flat seabed    
+*Static, Stabilize=<STABILIZER> 
+0.1, 1., 1e-15, 0.5    
+**
+*MODEL CHANGE, TYPE = CONTACT PAIR, REMOVE
+RISER_SURF, SEABED2
+RS_SURF, SEABED2
+FITTING_SURF, SEABED2
+**
+*CONTROLS, PARAMETERS=TIME INCREMENTATION
+ 8, 10, , , , , , 30
+ 0.5, , , , 0.5, 0.5       
+*CONTROLS,PARAMETERS=FIELD, FIELD=DISPLACEMENT
+ , 1.0
+*CONTROLS,PARAMETERS=FIELD, FIELD=ROTATION
+ , 1.0
+** 
+*Boundary, OP=NEW        
+REFND,ENCASTRE  
+REFND2,ENCASTRE  
+**
+<START_ND_NO>, 1,2  
+<START_ND_NO>, 4,6
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+PIPE, 2, 2
+PIPE, 4, 4
+PIPE, 6, 6
+BR_OUT, 2, 2
+BR_OUT, 4, 4
+BR_OUT, 6, 6
+**
+*DLOAD, OP=NEW  
+**apply weight
+RISER_BS,PZ,<WEIGHT_BEND_RS>
+RISER,PZ,<WEIGHT_EMPTY_RISER>
+FITTING, PZ, <WEIGHT_EMPTY_FIT>
+**
+**
+*CLOAD, OP=NEW, FOLLOWER
+<END_ND_NO>, 1,  <TX_LAY_END>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=1000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step 
+***   
+****************************************************************
+***** Step 2 Apply Seabed Slope
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+APPLY SEABED SLOPE 
+*Static, Stabilize=2.E-6  
+0.001, 1., 1.0e-15, 0.1
+**   
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 1,2
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+BR_OUT, 4, 4 
+**
+*Cload, OP=NEW, FOLLOWER
+<END_ND_NO>, 1,  <TX_LAY_END>
+**
+*End Step
+****************************************************************
+***** Step 3 CHANGE FRICTION SURFACE
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+CHANGE FRICTION SURFACE
+*Static, Stabilize=2.0E-6  
+0.1, 1., 1.0e-15, 0.1
+** 
+*MODEL CHANGE, TYPE=CONTACT PAIR, ADD
+RISER_SURF, SEABED2
+RS_SURF, SEABED2
+FITTING_SURF, SEABED2
+**
+*End Step
+**
+****************************************************************
+***** Step 4 RISE of TENSION
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+APPKLY RISER TDP TENSION for OP CONDITION 
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.05
+** 
+*MODEL CHANGE, TYPE=CONTACT PAIR, REMOVE
+RISER_SURF, SEABED
+RS_SURF, SEABED
+FITTING_SURF, SEABED
+**
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 1,2
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+*DLOAD, OP=NEW  
+**apply weight
+RISER_BS,PZ,<WEIGHT_BEND_RS>
+RISER,PZ,<WEIGHT_OP_RISER>
+FITTING, PZ, <WEIGHT_OP_FIT>
+**
+*Cload, OP=NEW, FOLLOWER
+<END_ND_NO>, 1,  <TX_TDP_OP>
+**
+*End Step
+**
+****************************************************************
+***** Step 5 OPERATION WITH PRESSURE LOADING
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP WITH PRESS
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.05
+** 
+*TEMPERATURE, OP=NEW
+RISER,  <PI_TEMP_OPMAX>
+** EQUIVALENT TEMP. FOR NORMAL PRESSURE ELONATION
+**
+*END STEP
+**
+****************************************************************
+***** Step 6 OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP4>
+<START_ND_NO>, 2, 2,  <VY_EXP4>
+<START_ND_NO>, 3, 3, <VZ_EXP4> 
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+**
+****************************************************************
+***** Step 7 OP PRESS and RiGID FLOwlINE END EXPANSION -6
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION-6
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP6>
+<START_ND_NO>, 2, 2,  <VY_EXP6>
+<START_ND_NO>, 3, 3, <VZ_EXP6> 
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+********************************************)********************
+***** Step 8 OPERATION WITH RETRACTION-7 (CD-1)
+**************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+RETRACTION (PRESS DOWN) AND RETRACTION)-7
+*Static, Stabilize=2.E-6 
+0.1, 1., 1.0e-15, 0.1
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_RETR7>
+<START_ND_NO>, 2, 2,  <VY_RETR7>
+<START_ND_NO>, 3, 3, <VZ_RETR7> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <TEMP_CD_FULL>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+***
+****************************************************************
+***** Step 9 OP PRESS and RiGID FLOwlINE END EXPANSION -9
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION-9
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP9>
+<START_ND_NO>, 2, 2,  <VY_EXP9>
+<START_ND_NO>, 3, 3, <VZ_EXP9> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <PI_TEMP_OPMAX>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+********************************************)********************
+***** Step 10 OPERATION WITH RETRACTION-10 (CD-2)
+**************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+RETRACTION (PRESS DOWN) AND RETRACTION)-10
+*Static, Stabilize=2.E-6 
+0.1, 1., 1.0e-15, 0.1
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_RETR10>
+<START_ND_NO>, 2, 2,  <VY_RETR10>
+<START_ND_NO>, 3, 3, <VZ_RETR10> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <TEMP_CD_FULL>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+***
+****************************************************************
+***** Step 11 OP PRESS and RiGID FLOwlINE END EXPANSION -12
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION-12
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP12>
+<START_ND_NO>, 2, 2,  <VY_EXP12>
+<START_ND_NO>, 3, 3, <VZ_EXP12> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <PI_TEMP_OPMAX>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+********************************************)********************
+***** Step 12 OPERATION WITH RETRACTION-13 (CD-3)
+**************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+RETRACTION (PRESS DOWN) AND RETRACTION)-13
+*Static, Stabilize=2.E-6 
+0.1, 1., 1.0e-15, 0.1
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_RETR13>
+<START_ND_NO>, 2, 2,  <VY_RETR13>
+<START_ND_NO>, 3, 3, <VZ_RETR13> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <TEMP_CD_FULL>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+***
+****************************************************************
+***** Step 13 OP PRESS and RiGID FLOwlINE END EXPANSION -15
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION-15
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP15>
+<START_ND_NO>, 2, 2,  <VY_EXP15>
+<START_ND_NO>, 3, 3, <VZ_EXP15> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <PI_TEMP_OPMAX>
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+********************************************)********************
+***** Step 14 OPERATION WITH RETRACTION-16 (CD-4)
+**************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+RETRACTION (PRESS DOWN) AND RETRACTION)-16
+*Static, Stabilize=2.E-6 
+0.1, 1., 1.0e-15, 0.1
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_RETR16>
+<START_ND_NO>, 2, 2,  <VY_RETR16>
+<START_ND_NO>, 3, 3, <VZ_RETR16> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <TEMP_CD_FULL>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+***
+****************************************************************
+***** Step 15 OP PRESS and RiGID FLOwlINE END EXPANSION -18
+****************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+OP PRESS and RiGID FLOwlINE INITIAL END EXPANSION-18
+*Static, Stabilize=2.E-6 
+0.01, 1., 1.0e-15, 0.01
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_EXP18>
+<START_ND_NO>, 2, 2,  <VY_EXP18>
+<START_ND_NO>, 3, 3, <VZ_EXP18> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <PI_TEMP_OPMAX>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+********************************************)********************
+***** Step 16 OPERATION WITH RETRACTION-19 (CD-5)
+**************************************************************
+*Step, Nlgeom=YES, Inc=20000, Unsymm=YES     
+RETRACTION (PRESS DOWN) AND RETRACTION)-19
+*Static, Stabilize=2.E-6 
+0.1, 1., 1.0e-15, 0.1
+** 
+*Boundary, OP=NEW 
+REFND, 1, 4
+REFND, 5, 5, -<SLOPE_ANGLE>
+REFND, 6, 6
+REFND2, 1, 4
+REFND2, 5, 5, -<SLOPE_ANGLE>
+REFND2, 6, 6
+**     
+<START_ND_NO>, 4,5
+<START_ND_NO>, 6,6, <SETA_X>
+**
+<END_ND_NO>, 2, 2  
+<END_ND_NO>, 4, 6
+**
+****Boundary, OP=NEW, TYPE=VELOCITY
+<START_ND_NO>, 1, 1,  <VX_RETR19>
+<START_ND_NO>, 2, 2,  <VY_RETR19>
+<START_ND_NO>, 3, 3, <VZ_RETR19> 
+**
+*TEMPERATURE, OP=NEW
+RISER,  <TEMP_CD_FULL>
+**
+*********   Output Requests ****************
+********************************************
+**
+*OUTPUT,FIELD,FREQ=10000        
+*NODE OUTPUT
+U,NT, COORD, RF    
+*ELEMENT OUTPUT   
+ESF1, SE, SF, THE 
+*Contact Output       
+cstress,cdisp     
+*OUTPUT,HISTORY,FREQ=10000
+*NODE OUTPUT,NSET=ND_START 
+U
+*NODE OUTPUT,NSET=ND_END 
+U
+***
+*End Step
+***
